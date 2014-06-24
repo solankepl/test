@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+	<playlistId>PLvMGq_h9khwVjCuChePy3YI64Puw3-YXC</playlistId> <!-- PLvMGq_h9khwVjCuChePy3YI64Puw3-YXC,PLF5D324185EE73FEC ,PL205451FE7BF57786 ,SP9A7F57201F1AA96B, 98149AD876B3ECF4 -->
+	<imageCount>16</imageCount> <!-- max limit set 50 -->
+	<fontSet>Tahoma</fontSet>
+	<backgroundUrl>images/background.jpg</backgroundUrl>
+	<crousalHeight>300</crousalHeight>
+	<crousalWidth>280</crousalWidth>
+	<crousalPostion>left</crousalPostion>
+	<descriptionBackrounColor>#FF00FF</descriptionBackrounColor>
+	<descriptionBackrounOpacity>0.5</descriptionBackrounOpacity>
+	<descriptionFontColor>#FFEBCD</descriptionFontColor>	
+	<videoPlayerWidth>500</videoPlayerWidth>
+	<videoPlayerHeight>400</videoPlayerHeight>
+	<videoPlayerX>15</videoPlayerX>
+	<videoPlayerY>20</videoPlayerY>
+	<imageBorderDefaultColor>#FFFF00</imageBorderDefaultColor>
+	<imageBorderSelectedColor>#00FF00</imageBorderSelectedColor>
+</configuration>
+
+ 

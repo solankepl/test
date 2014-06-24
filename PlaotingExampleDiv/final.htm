@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="utf-8">	
+	<title>test</title> 
+	<script type="text/javascript" language="javascript" src="jquery.js"></script>
+<style> 
+	 
+		.clear-left {
+		   clear: left;            
+		}
+		.right {
+		   float: right;   
+		}
+		.left {
+		   float: left;   
+		}
+		.big {
+			width: 310px;
+			height: 210px;
+			background: #CCCCCC;
+			margin: 3px;    
+		}
+		.small {
+			width: 154px;
+			height: 102px;
+			background: #CCCCCC;
+			margin: 3px; 
+		}
+		.up {
+		  margin-top: -105px;   
+		}
+		.mainPage{
+			float: left; 	
+		}
+		.subPage {	
+			width: 636px;
+			height: 211px;	
+			padding:0px;  
+		}
+		#mainContainer {
+			width: 100%;
+			height: 670px;
+			overflow: scroll;
+			overflow-y: hidden;
+		}
+		.pagesAddContainer img{
+			width:100%;
+			height:100%;
+			opacity:0;
+		}
+	</style>
+	
+	<script>
+	
+	var totalData =0;
+	var totalNumVideo = 0;
+	var showImgColum = 5;
+	var totalColums;
+	var totalColumsInRow=3;
+	var totalRows;
+	var playlistId = 'PL9tY0BWXOZFvWi6WNdcokF_YvXUxyESRW';
+	var totalDataArr = new Array();
+	
+	var setColumArr = new Array();
+	
+	var patternClassArr =["","small left", "small right", "big left", "big right","small left up"];
+	//0 =""; //1 = samll left;//2 = samll right	//3= big left; //4=bigright;  //5 = samll left up;
+	
+	
+	var arrPattern =[
+				[1,1,4,1,1],
+				[1,2,3,1,5],
+				[3,1,1,1,1]
+				//[3,4,0,0,0]
+				//[1,1,1,1,1,1,1,1]								  
+			 ]
+			 
+	var backup = new Array();	
+	
+	var playlistIdArr = ['PL9tY0BWXOZFvWi6WNdcokF_YvXUxyESRW','EL8zJF6Z3N_LA'];	 
+			 
+	$(document).ready(function(e) {
+		totalData =0;
+        dataLoad(playlistId,1);
+    });			 
+	
+	function returnNumRandom(val){
+		var tempArr = new Array();
+		
+	    for(var i=0; i<val; i++){			
+			var randomNum = Math.floor(Math.random()*arrPattern.length);
+			tempArr.push(arrPattern[randomNum]);
+									
+			if((i+1)%totalColumsInRow==0 || i == (val-1)){				
+				setColumArr.push(tempArr);
+				tempArr = new Array();;
+			}					
+		}
+		//console.log("num= "+ totalDataArr[20].media$group.media$title.$t);	
+		ploatImages()
+	}
+	
+	function ploatImages(){								
+		var tempDiv ='';
+		var count= 0;	
+		
+		$('.mainContainer').empty();
+				
+		for(var i=0; i<setColumArr.length; i++){												
+			 tempDiv +='<div class="mainPage">';			 
+			 for(var j=0; j<setColumArr[i].length; j++){				
+				 tempDiv += '<div class="subPage">';			
+				 for(var k=0; k<setColumArr[i][j].length; k++){					
+					if(count<totalNumVideo){
+						var imgPath = totalDataArr[count].media$group.media$thumbnail[0].url; 
+						tempDiv += '<div class="'+patternClassArr[setColumArr[i][j][k]]+'"><img  src="'+imgPath+'"></div>';
+						count++;
+					}					
+				 }
+				 tempDiv += '</div>';
+			 } 	
+			 tempDiv += '</div>';			 					 
+		 }			 	 
+		$('#mainContainer').find('.pagesAddContainer').append(tempDiv);	
+		
+		$(".pagesAddContainer").find('img').stop().animate({opacity:1}) 
+		
+		var setPagesAddContainerWidth =   parseInt(setColumArr.length) *parseInt($('.subPage').outerWidth());		
+		$('.pagesAddContainer').css('width',setPagesAddContainerWidth+'px');
+	}
+	
+	
+	function dataLoad(playlistID, startIndex){
+		var playListURL = "http://gdata.youtube.com/feeds/api/playlists/" + playlistID + "?v=2&start-index="+startIndex+"&max-results=50&alt=json&callback=?";
+		var videoURL= "http://www.youtube.com/watch?v=";
+				
+		$.getJSON(playListURL, function(data) {
+			totalNumVideo = data.feed.openSearch$totalResults.$t;
+			 //console.log(totalNumVideo);
+			$.each(data.feed.entry, function(i, item) {
+				totalData++;	
+				//console.log(i+">>"+item);
+											
+				totalDataArr.push(item); 							
+			});	
+			//console.log(totalData +" >> "+totalNumVideo +">>" +startIndex );
+			if (totalData>=totalNumVideo) {
+				//alert("complate");
+				totalColums = Math.ceil(totalNumVideo/showImgColum);	
+				totalRows =  Math.ceil(totalColums/totalColumsInRow);
+				returnNumRandom(totalColums)				
+			}else{
+				dataLoad(playlistID,(startIndex+50))
+			}			
+				
+		});						
+	}		
+	</script>
+
+  </head>
+  <body>
+	
+    <div id="mainContainer">
+       <div class="pagesAddContainer">
+       
+           
+       </div>        
+    </div> 
+
+
+        
+  </body>
+</html>

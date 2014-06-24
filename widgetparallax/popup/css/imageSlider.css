@@ -1,0 +1,74 @@
+@charset "utf-8";
+/* CSS Document */
+
+	.slider{ 
+		 position:absolute;
+	}
+	
+	.slider #back{
+			float:left;	
+			background-image:url(../images/back.png);
+			background-repeat:no-repeat;
+			background-position:center; 
+	}
+	
+	.slider #next{
+			background-image:url(../images/next.png);
+			background-repeat:no-repeat;
+			background-position:center; 
+	}
+	
+	.slider .arrowImage{
+		/*position:static;*/
+		background:#063;
+		cursor:pointer;
+	}
+	
+	.slider .arrowImageDeActive{
+		background:#666;
+		cursor:default;
+	}
+	
+	.slider #playlist{	
+	    margin-left:50px;
+		background:#666;	
+		overflow:hidden;	
+    	position:absolute;
+		float:left;
+	}
+	
+	.slider li { 		
+		float:left;
+		list-style:none;
+		background:#000000;
+		color:#FFFFFF;
+		
+		
+	}
+	
+	.slider li .imageNumber{
+		width:20%;
+		margin-left:1%;
+		font-size:24px;
+		float:left;
+	}
+	
+	.slider li .imageTitle{
+		width:70%;
+		margin-right:1%;
+		float:right;
+		font-size:10px;
+		
+	}
+	.slider li img{
+		border:1px solid #FFFFFF;
+	}
+	
+	#closeBtn{
+		position:absolute;
+		background:#006600;
+		z-index:99999;
+		margin-top:0px;
+	
+	}
+	

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<meta charset="utf-8">
+	
+	<title>test</title>
+    
+    
+  <script type="text/javascript" language="javascript" src="jquery.js"></script>
+    <style>  
+	.main_wrapper {
+		max-width:1060px; 
+		overflow:hidden;
+	}
+	
+	.add_div_wrapper{
+		width: 99%; 
+		padding: 0px; 
+		background-color: Yellow;	
+		float:left;		
+		overflow:auto;	
+		border:solid 1px black;
+	}
+	
+	#add_div{
+		position:relative;	
+		width:5000px;	
+		margin-left:0px;
+	}
+	
+	.page{
+		height: 200px; 
+		width: 1000px;
+		float:left;	
+	}
+	
+	#page_1{
+		background:#0CC;
+	}
+	
+	#page_2{
+		background:#069;
+	}
+	
+	#page_3{
+		background:#9C0;
+	}
+	
+	#page_4{
+		background:#F63;
+	}
+	
+	.tab{
+		border:1px solid #033;
+		cursor:pointer;	
+	}
+	</style>
+    <script>
+	var curPageWidth;
+	var curTabNum = 1;	
+	var praviesTabSelected = 1;
+	var speed =1000;
+	var currentPage;
+	
+		$(document).ready(function(e) {
+           
+		   $('.tab').bind('click', pageMove)
+		   setPageWidth();		   
+		   $( window ).resize(function() {
+ 			 	setPageWidth();
+			});		
+			$('#add_div').css('margin-left', "0px");
+        });
+		
+		function setPageWidth(){
+			curPageWidth = $('.add_div_wrapper').width();
+			$('.page').css('width', curPageWidth+'px');		
+			var temp =  -1*(curPageWidth*curTabNum);
+			$('#add_div').css('margin-left', temp+"px");
+		}
+		
+		function pageMove(e){
+			curTabNum = parseInt($(e.currentTarget).attr('id').split("_")[1]);			
+				var curDivPos =  parseInt($('#add_div').css('margin-left').replace("px", ""));
+			var setPagePostion; //=  curDivPos-curPageWidth;
+			if(curTabNum < praviesTabSelected){
+				
+				setPagePostion =  -1*curDivPos-curPageWidth;				
+				$("#page_"+curTabNum).insertBefore("#page_"+praviesTabSelected);
+				
+			}else
+			if(curTabNum > praviesTabSelected){				
+				$("#page_"+curTabNum).insertAfter("#page_"+praviesTabSelected);
+				setPagePostion =  curDivPos-curPageWidth;
+				//console.log("p="+praviesTabSelected +" c= "+curTabNum);
+			}
+			
+			console.log(setPagePostion);
+
+			$('#add_div').delay(10).animate({
+					"margin-left":setPagePostion
+				},speed,function(){
+					
+			});
+				
+				praviesTabSelected = curTabNum;		
+		}	
+	</script>
+
+  </head>
+  <body>
+  <div class="main_wrapper">
+  
+        <div class="add_div_wrapper">
+        	<div id="add_div">
+           		 <div id="page_1" class="page" >page 1</div>
+           		 <div id="page_2" class="page" >page 2</div>
+                 <div id="page_3" class="page" >page 3</div>
+                 <div id="page_4" class="page" >page 4</div>
+            </div>
+        </div>
+        <div style="clear:both"></div>
+        <span id="tab_1" class="tab">Tab 1</span>
+        <span id="tab_2" class="tab">Tab 2</span>
+        <span id="tab_3" class="tab">Tab 3</span>
+         <span id="tab_4" class="tab">Tab 4</span>         
+ </div>
+</body></html>

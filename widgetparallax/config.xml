@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+	<playlistId>PLvMGq_h9khwVjCuChePy3YI64Puw3-YXC</playlistId><!-- PLvMGq_h9khwVjCuChePy3YI64Puw3-YXC,PLF5D324185EE73FEC ,PL205451FE7BF57786 ,SP9A7F57201F1AA96B, 98149AD876B3ECF4 -->
+	<gadgetWidth>970</gadgetWidth>
+	<gadgetHeight>700</gadgetHeight>
+	<galleryWidth>1200</galleryWidth>
+	<galleryHeight>800</galleryHeight>
+	<galleryX>0</galleryX>
+	<galleryY>55</galleryY>
+	<backgroundURL>bgimage_2.jpg</backgroundURL>
+	<parallaxSpeed>6</parallaxSpeed>
+	<thumbnailImageBGColor>#000000</thumbnailImageBGColor>
+	<thumbnailTextColor>#FFFFFF</thumbnailTextColor>
+	<videoPlayerWidth>720</videoPlayerWidth>
+	<videoPlayerHeight>370</videoPlayerHeight>
+	<fontSet>Tahoma</fontSet>
+</configuration>
